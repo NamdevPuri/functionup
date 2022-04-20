@@ -1,0 +1,12 @@
+const mongoose = require('mongoose');
+
+const batchSchema =new mongoose.Schema({
+    name: String,
+    size: String,
+    program:{
+        type:String,
+        enum:["backend","forntend"]
+           },
+},{timestamps: true});
+module.exports =mongoose.model('Batch',batchSchema)
+
