@@ -13,7 +13,10 @@ const basicCode= async function(req, res) {
     }
 
 
-
+const basiccode2 = async function(req, res){
+    console.log("you get ip")
+    res.send ({msg: "you get ip address in output form"})
+}
 
 
 
@@ -44,3 +47,4 @@ const getUsersData= async function (req, res) {
 module.exports.createUser= createUser
 module.exports.getUsersData= getUsersData
 module.exports.basicCode= basicCode
+ module.exports.basiccode2=basiccode2

@@ -1,3 +1,4 @@
+
 const express = require('express');
 const router = express.Router();
 // const UserModel= require("../models/userModel.js")
@@ -48,7 +49,8 @@ router.post("/createBook", BookController.createBook  )
 
 
 
-router.get("/basicRoute", commonMW.mid1, commonMW.mid2, commonMW.mid3, commonMW.mid4, UserController.basicCode)
+router.get("/basicRoute", commonMW.mid5, UserController.basiccode2)
+// router.get("/basic ", commonMW.mid5, UserController.basicCode)
 
 
 
