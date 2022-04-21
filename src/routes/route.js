@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-// const UserModel= require("../models/userModel.js")
+//  const productModel= require("../models/productModel.js")
 const UserController= require("../controllers/userController")
-//const BookController= require("../controllers/bookController")
+const productController=require("../controllers/productController")
+const orderController = require('../controllers/orderController')
 
 
 router.get("/test-me", function (req, res) {
@@ -39,10 +40,11 @@ router.get("/test-me", function (req, res) {
 
 
 
-
-
-router.get("/basicRoute", UserController.basicCode)
-router.post('/create-a-user', UserController.createAUser)
+router.post('/user', productController.createProduct)
+router.post ('/createOrder', orderController.createOrder)
+// router.get("/basicRoute", UserController.)
+// router.post('/create-a-user', UserController.createAUser)
+router.post('/createaUser', UserController.createUser)
 
 
 
