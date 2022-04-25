@@ -1,14 +1,14 @@
 const jwt = require("jsonwebtoken");
 const userModel = require("../models/userModel");
 
-const createUser = async function (abcd, xyz) {
+const createUser = async function (req, res) {
   //You can name the req, res objects anything.
   //but the first parameter is always the request 
   //the second parameter is always the response
-  let data = abcd.body;
+  let data = req.body;
   let savedData = await userModel.create(data);
-  console.log(abcd.newAtribute);
-  xyz.send({ msg: savedData });
+  console.log(req.newAtribute);
+  res.send({ msg: savedData });
 };
 
 const loginUser = async function (req, res) {
@@ -17,10 +17,7 @@ const loginUser = async function (req, res) {
 
   let user = await userModel.findOne({ emailId: userName, password: password });
   if (!user)
-    return res.send({
-      status: false,
-      msg: "username or the password is not correct",
-    });
+    return res.send({status: false, msg: "username or the password is not correct"});
 
   // Once the login is successful, create the jwt token with sign function
   // Sign function has 2 inputs:
@@ -40,7 +37,7 @@ const loginUser = async function (req, res) {
   res.send({ status: true, data: token });
 };
 
-const getUserData = async function (req, res) {
+const fetchUser = async function (req, res) {
 let token = req.headers["x-auth-token"]
 console.log(token)
   let userId = req.params.userId;
@@ -64,6 +61,11 @@ const updateUser = async function (req, res) {
   res.send({ status: updatedUser, data: updatedUser });
 };
 
+
+
+
+
+
 const deleteUser = async function(req, res) {    
   let userId = req.params.userId
   let user = await userModel.findById(userId)
@@ -74,8 +76,10 @@ const deleteUser = async function(req, res) {
   res.send({status: true, data: updatedUser})
 }
 
+
 module.exports.createUser = createUser;
-module.exports.getUserData = getUserData;
+module.exports.fetchUser = fetchUser;
 module.exports.updateUser = updateUser;
 module.exports.loginUser = loginUser;
 module.exports.deleteUser = deleteUser
+
